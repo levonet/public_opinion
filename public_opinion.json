@@ -1,0 +1,7 @@
+{
+    'Mojolicious::Plugin::Web::Auth': {
+        'module': 'github',
+        'key': 'Github Client ID',
+        'secret': 'Github Secret'
+    }
+}

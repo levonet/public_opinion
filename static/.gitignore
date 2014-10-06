@@ -1,0 +1,7 @@
+.enb/tmp/
+_/
+libs/
+node_modules/
+*bundles/*/*.*
+!*bundles/*/*.bemjson.js
+npm-debug.log

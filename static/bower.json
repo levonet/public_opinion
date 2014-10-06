@@ -1,0 +1,14 @@
+{
+  "name": "PublicOpinion",
+  "version": "0.0.0",
+  "author": "Pavel Bashinsky",
+  "email": "levonet@gmail.com",
+  "ignore": [
+    ".enb/tmp",
+    "node_modules",
+    "libs"
+  ],
+  "dependencies": {
+    "bem-components": "git://github.com/bem/bem-components.git#28816d26221a7f320d24d093d80be386aeab3d34"
+  }
+}

@@ -1,4 +1,7 @@
 log/*.log
 MYMETA.*
 Makefile
+public_opinion.json
+*.diff
+*.orig
 *~

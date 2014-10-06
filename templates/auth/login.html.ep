@@ -1,0 +1,7 @@
+% layout 'default';
+% for my $auth (@{$config->{'Plugin'}->{'Web::Auth'}}) {
+<form method="post">
+  <input type="hidden" name="auth" value="<%= $auth->{module} %>">
+  <button type="submit">Login with <%= $auth->{module} %></button>
+</form>
+% }

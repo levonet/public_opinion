@@ -1,0 +1,11 @@
+{
+    "Plugin": {
+        "Web::Auth": [
+            {
+                'module': 'Github',
+                'key': 'Github Client ID',
+                'secret': 'Github Secret'
+            }
+        ]
+    }
+}

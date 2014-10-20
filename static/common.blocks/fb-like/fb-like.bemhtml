@@ -1,0 +1,5 @@
+block('fb-like').attrs()({
+    'data-share': 'true',
+    'data-width': 'button',
+    'data-show-faces': 'false'
+})

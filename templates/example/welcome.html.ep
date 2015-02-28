@@ -6,7 +6,7 @@ and the layout "templates/layouts/default.html.ep",
 <a href="<%== url_for %>">click here</a> to reload the page or
 <a href="/index.html">here</a> to move forward to a static page.
 <hr>
-<%= session('account_info')->{name} || session('account_info')->{display_name} %>@<%= session('auth_module') %>
+<%= session('account_info')->{displayName} || session('account_info')->{display_name} || session('account_info')->{name} %>@<%= session('auth_module') %>
 <form method="post" action="/logout">
 <button type="submit">Logout</button>
 </form>

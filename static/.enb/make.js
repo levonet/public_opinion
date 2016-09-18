@@ -84,6 +84,7 @@ function getDesktops(config) {
         { path: 'libs/bem-components/design/common.blocks', check: false },
         { path: 'libs/bem-components/desktop.blocks', check: false },
         { path: 'libs/bem-components/design/desktop.blocks', check: false },
+        'config.blocks',
         'common.blocks',
         'desktop.blocks'
     ].map(function(level) {
@@ -100,6 +101,7 @@ function getTouchPads(config) {
         { path: 'libs/bem-components/touch.blocks', check: false },
         { path: 'libs/bem-components/design/touch.blocks', check: false },
         { path: 'libs/bem-components/design/touch-pad.blocks', check: false },
+        'config.blocks',
         'common.blocks',
         'touch.blocks',
         'touch-pad.blocks'
@@ -117,6 +119,7 @@ function getTouchPhones(config) {
         { path: 'libs/bem-components/touch.blocks', check: false },
         { path: 'libs/bem-components/design/touch.blocks', check: false },
         { path: 'libs/bem-components/design/touch-phone.blocks', check: false },
+        'config.blocks',
         'common.blocks',
         'touch.blocks',
         'touch-phone.blocks'

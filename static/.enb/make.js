@@ -8,18 +8,47 @@ module.exports = function(config) {
             [ require('enb/techs/bemdecl-from-bemjson') ],
             [ require('enb/techs/css-ie') ],
             [ require('enb-bemxjst/techs/bemtree-old') ],
-            [ require('enb-diverse-js/techs/browser-js'), { target: '?.js' } ],
+            [ require('enb-diverse-js/techs/browser-js'), { target: '?.browser.js' } ],
+            [ require('enb/techs/file-merge'), { target : '?.pre.js', sources : ['?.config.js', '?.browser.bemhtml.js', '?.browser.js'] } ],
+            [ require('enb-modules/techs/prepend-modules'), { source : '?.pre.js', target : '?.js' } ],
             [ require('enb-stylus/techs/css-stylus'), { target: '?.noprefix.css' } ],
             [ require('enb-bemxjst/techs/bemhtml-old') ],
             [ require('enb-bemxjst/techs/html-from-bemjson') ]
         ]);
 
+        // Client BEMHTML
+        nodeConfig.addTechs([
+            [ require('enb/techs/bemdecl-from-deps-by-tech'), {
+                target : '?.js.bemhtml.bemdecl.js',
+                sourceTech : 'js',
+                destTech : 'bemhtml'
+            }],
+            [ require('enb/techs/bemdecl-merge'), {
+                bemdeclSources : ['?.js.bemhtml.bemdecl.js', '?.bemdecl.js'],
+                bemdeclTarget : '?.bemhtml.bemdecl.js'
+            }],
+
+            [ require('enb/techs/deps-old'), {
+                depsTarget : '?.bemhtml.deps.js',
+                bemdeclTarget : '?.bemhtml.bemdecl.js'
+            }],
+            [require('enb/techs/files'), {
+                depsTarget : '?.bemhtml.deps.js',
+                filesTarget : '?.bemhtml.files',
+                dirsTarget : '?.bemhtml.dirs'
+            }],
+
+            [require('enb-bemxjst/techs/bemhtml-old'), {
+                target : '?.browser.bemhtml.js',
+                filesTarget : '?.bemhtml.files',
+                devMode : false
+            }]
+        ]);
+
         nodeConfig.addTargets([
             '?.min.css',
             '?.min.ie.css',
-            '?.bemtree.js',
             '?.min.js',
-            '?.bemhtml.js',
             '?.html'
         ]);
     });
@@ -57,6 +86,7 @@ module.exports = function(config) {
     config.mode('development', function(modeConfig) {
         config.nodes('*.bundles/*', function(nodeConfig) {
             nodeConfig.addTechs([
+                [ require('enb/techs/js'), { sourceSuffixes: 'development.js', target: '?.config.js' } ],
                 [ require('enb/techs/file-copy'), { sourceTarget: '?.css', destTarget: '?.min.css' } ],
                 [ require('enb/techs/file-copy'), { sourceTarget: '?.ie.css', destTarget: '?.min.ie.css' } ],
                 [ require('enb/techs/file-copy'), { sourceTarget: '?.js', destTarget: '?.min.js' } ]
@@ -67,6 +97,7 @@ module.exports = function(config) {
     config.mode('production', function(modeConfig) {
         config.nodes('*.bundles/*', function(nodeConfig) {
             nodeConfig.addTechs([
+                [ require('enb/techs/js'), { sourceSuffixes: 'production.js', target: '?.config.js' } ],
                 [ require('enb/techs/borschik'), { sourceTarget: '?.css', destTarget: '?.min.css' } ],
                 [ require('enb/techs/borschik'), { sourceTarget: '?.ie.css', destTarget: '?.min.ie.css' } ],
                 [ require('enb/techs/borschik'), { sourceTarget: '?.js', destTarget: '?.min.js' } ]
